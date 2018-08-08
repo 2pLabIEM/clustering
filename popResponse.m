@@ -1,4 +1,4 @@
-function popResp
+function popResponse
 
 % clear all
 
@@ -24,7 +24,7 @@ for index=1:neuronsN
     PSTH4Dall(:,:,index,:)=PSTHindividual;
 end
 
-PSTH4Dall=PSTH4Dall(:,1:25,:,:); 
+PSTH4Dall=PSTH4Dall(:,1:25,:,:);
 
 if d==39
 meanP=mean(PSTH4Dall);
@@ -35,7 +35,7 @@ pop=mean(meanP);
 figure
 plot(pop)
 imagesc(pop)
-   
+
 else
 meanP=mean(PSTH4Dall);
 meanP=squeeze(meanP);
@@ -47,5 +47,3 @@ figure
 imagesc(popG)
 % plot(pop)
 end
-
-

@@ -1,4 +1,4 @@
-function identityHo
+function clustering_IN
 
 clear all
 
@@ -50,7 +50,7 @@ for stim1=1:stimuliN
                     CM(:,:)=0;
                 end
                 meanCorr=meanCorr+CM(1,2);
-                
+
             end
         end
         ACM(stim1, stim2)=meanCorr/(repetitions*repetitions);
@@ -66,7 +66,7 @@ for stim1=1:stimuliN
                     CM(:,:)=0;
                 end
                 meanCorr=meanCorr+CM(1,2);
-                
+
             end
         end
         ACM(stim1, stim1)=2*meanCorr/(repetitions*(repetitions-1));
@@ -83,7 +83,7 @@ ACM(:,tbd)=[];
 ACM(tbd, :)=[];
 if size(ACM, 1)<2
     disp('Too few thresholded stimuli')
-  return;  
+  return;
 end
 imagesc(ACM)
 colormap jet
@@ -118,10 +118,10 @@ if ACM(sD, sD)<ACM(sD, sND)
        haltSearch=1;
        break;
    end
-    
-    
-end   
-end 
+
+
+end
+end
 if haltSearch==1
     break;
 end
@@ -137,19 +137,19 @@ T = cluster(Z,'maxclust',modN);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  if d==39
 
-     
+
 if modN==1
     cluster1=find(T==1);
-    origStimIdentC1=survivals(cluster1); 
+    origStimIdentC1=survivals(cluster1);
     disp('1mod- cisla z Complex74');
-disp(origStimIdentC1); 
+disp(origStimIdentC1);
 end
-    
-if modN==2
-cluster1=find(T==1); 
-cluster2=find(T==2); 
 
-origStimIdentC1=survivals(cluster1);  
+if modN==2
+cluster1=find(T==1);
+cluster2=find(T==2);
+
+origStimIdentC1=survivals(cluster1);
 origStimIdentC2=survivals(cluster2);
 disp('2 mody - cisla z Complex74');
 disp(origStimIdentC1);
@@ -157,11 +157,11 @@ disp(origStimIdentC2);
 end
 
 if modN==3
-cluster1=find(T==1); 
-cluster2=find(T==2); 
+cluster1=find(T==1);
+cluster2=find(T==2);
 cluster3=find(T==3);
 
-origStimIdentC1=survivals(cluster1);  
+origStimIdentC1=survivals(cluster1);
 origStimIdentC2=survivals(cluster2);
 origStimIdentC3=survivals(cluster3);
 disp('3 mody - cisla z Complex74');
@@ -169,14 +169,14 @@ disp(origStimIdentC1);
 disp(origStimIdentC2);
 disp(origStimIdentC3);
 end
- 
+
 if modN==4
-cluster1=find(T==1); 
-cluster2=find(T==2); 
+cluster1=find(T==1);
+cluster2=find(T==2);
 cluster3=find(T==3);
 cluster4=find(T==4);
 
-origStimIdentC1=survivals(cluster1);  
+origStimIdentC1=survivals(cluster1);
 origStimIdentC2=survivals(cluster2);
 origStimIdentC3=survivals(cluster3);
 origStimIdentC4=survivals(cluster4);
@@ -189,19 +189,19 @@ disp(origStimIdentC4);
 end
 
  else
- 
+
         if modN==1
     cluster1=find(T==1);
-    origStimIdentC1=survivals(cluster1); 
+    origStimIdentC1=survivals(cluster1);
     disp('1mod- cisla z Complex74');
-disp(origStimIdentC1); 
+disp(origStimIdentC1);
      end
 
  if modN==2
-cluster1=find(T==1); 
-cluster2=find(T==2); 
+cluster1=find(T==1);
+cluster2=find(T==2);
 
-C1=survivals(cluster1);  
+C1=survivals(cluster1);
 C2=survivals(cluster2);
 disp('2 mody - cisla z basethr');
 disp(C1);
@@ -209,11 +209,11 @@ disp(C2);
 end
 
 if modN==3
-cluster1=find(T==1); 
-cluster2=find(T==2); 
+cluster1=find(T==1);
+cluster2=find(T==2);
 cluster3=find(T==3);
 
-C1=survivals(cluster1);  
+C1=survivals(cluster1);
 C2=survivals(cluster2);
 C3=survivals(cluster3);
 disp('3 mody - cisla z base thr');
@@ -229,7 +229,7 @@ end
 % prvy=input(prompt);
 % prompt='stimul 2';
 % druhy=input(prompt);
-% 
+%
 % velke=mean(PSTH4Dall,1);
 % velke=squeeze(velke);
 % male=velke(1:25,:,:);
@@ -254,31 +254,30 @@ end
 %        if base(n,:)==baseTHR_corr(m,:)
 %            v(1,n-1)=n-1;
 %        end
-%       
+%
 %     end
 % end
 % v(v==0)=[]
-% 
+%
 % v=v';
 % save('q.mat') %hlavne na troubleshooting vsetky variables
-% 
+%
 % [a,b]=size(C1);
-% 
+%
 % for n=1:a
 % S1(n,1)=v((C1(n,1)),1)
 % end
-% 
+%
 % [a,b]=size(C2);
-% 
+%
 % for n=1:a
 %     S2(n,:)=v((C2(n,1)),1);
 % end
 % S2
 % if modN==3
 % [a,b]=size(C3)
-% 
+%
 % for n=1:a
 % S3(n,1)=v((C3(n,1)),1)
 % end
 % end
-
