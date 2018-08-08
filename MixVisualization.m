@@ -1,4 +1,4 @@
-function mixPuta
+function MixVisualization
 
 clear all
 
@@ -38,7 +38,7 @@ male=squeeze(male);
 
 
 for n=1:d
-    
+
 meanResp=male(:,n);
 spolu(:,n)=meanResp;
 end
