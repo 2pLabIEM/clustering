@@ -12,7 +12,7 @@ k=input(prompt);
 j2=j*k; %aby sme sekundy previedli na frames
 step_vektor=round(1:j2:(i*j2));
 
-%timebin=round(k/4);   %pre gcamp 
+%timebin=round(k/4);   %pre gcamp
 timebin=round(k*2);         %pre intrinsic urcite 2s average - takze min 5s interstim
 
 list=dir('Basler*');
@@ -22,12 +22,12 @@ example1=importdata(list(1,1).name);
 
 
 
-%FOR loops pre meanResposne tiffy 
+%FOR loops pre meanResposne tiffy
 %v zavislosti na fps
     for m=step_vektor
          Resp(a,b,timebin)=zeros;
-        for n=1:timebin%cca200ms nastaveny ako resp bin. Kludne zmenit ale bacha aj v dalsom riadku
-          
+        for n=1:timebin%musi byt minimal 2s
+
            frame=importdata(list((m+n-1),1).name);
            Resp(:,:,n)=frame;
         end
@@ -41,22 +41,22 @@ example1=importdata(list(1,1).name);
      for m=step_vektor
          Spont(a,b,timebin)=zeros;
         for n=1:timebin%cca200ms nastaveny ako spont bin. Kludne zmenit ale bacha aj v dalsom riadku
-           
+
            if m==1
                frame=importdata(list((m+round(j2)-n-1),1).name);
            else
                frame=importdata(list((m+round(j2)-n),1).name);
            end
-    
+
            Spont(:,:,n)=frame;
         end
             meanSpont=mean(Spont,3);
             meanSpontui8=uint8(meanSpont);
             filename=sprintf('meanSpont%d.tif',m-1);
-            
+
             imwrite(meanSpontui8,filename);
      end
-     
+
 listResp=dir('meanResp*')
 [c,y]=size(listResp);
 
@@ -68,7 +68,7 @@ end
 meanRespALL=mean(meanRespALL,3);
 meanRespALL=uint8(meanRespALL);
 imwrite(meanRespALL,'meanRespALL.tif')
-     
+
 listSpont=dir('meanSpont*')
 [c,y]=size(listSpont);
 
@@ -80,14 +80,15 @@ end
 meanSpontALL=mean(meanSpontALL,3);
 meanSpontALL=uint8(meanSpontALL);
 imwrite(meanSpontALL,'meanSpontALL.tif')
-     
+
 %clear all
 
 r=imread('meanRespALL.tif');
 s=imread('meanSpontALL.tif');
 
-a=imsubtract(r,s);
-a2=imdivide(a,s);
+a=(s-r)/s;
 
+imageshow(a)
 
-   
+%a=imsubtract(r,s);
+%a2=imdivide(a,s);
