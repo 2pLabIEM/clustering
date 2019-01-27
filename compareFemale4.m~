@@ -273,14 +273,14 @@ ITcorrCoefsInfo(ITcorrCoefsInfo==0)=[];
 [sizeTbd,useless]=size(tbd3);
 [sizeSurvivals3,useless]=size(survivals3);
 
-% randomControl(sizeTbd)=(1:sizeTbd);
+randomControl(sizeTbd3)=zeros;
 % randomControl=randperm(sizeTbd,sizeSurvivals3);
 
 IScontrolIdent(size(randomControl))=zeros;
 
     for h=1:sizeTbd
         
-        IScontrolIdent(h)=tbd3(h);
+        IScontrolIdent(h)=tbd3((randomControl(h)));
     end
 
   
@@ -289,14 +289,13 @@ IScontrolIdent(size(randomControl))=zeros;
         
         IScontrolCorrs(j)=x3((IScontrolIdent(j)));
     end
-    meanIScontrolCorrs=mean(IScontrolCorrs);
 %%
 %vygenerovat variable co bude rdy na plot
 
-plotna(size(IScorrCoefsInfo)+1)=zeros;
+plotna(size(IScorrCoefsInfo)=zeros;
 [k,l]=size(plotna);
-plotna(1:(l-1))=IScorrCoefsInfo;
-plotna(l)=meanIScontrolCorrs;
+plotna(1:(end-1))=IScontrolCorrs;
+plotna((l/2+1):end)=IScorrCoefsInfo;
 
 % ident(size(IScorrCoefsInfo)*2)=zeros;
 % [k,l]=size(ident);
