@@ -1,3 +1,4 @@
+function compareFemale4
 clear all
 
 selpath1=uigetdir('O:\Filip\7f','session1');
@@ -230,11 +231,11 @@ for stim1=1:stimuliN
 end
 
 
-thrRepro=0.05;
+thrRepro=0.1;
 x3=diag(ACM);
 tbd3=find(x3<thrRepro);
 survivals3=find(x3>thrRepro)
-
+[sizeSurvivals3,nouse]=size(survivals3);
 IScorrCoefsInfo(size(survivals3))=zeros;
 
     for e=1:(size(survivals3))
@@ -242,7 +243,41 @@ IScorrCoefsInfo(size(survivals3))=zeros;
         IScorrCoefsInfo(e)=x3((survivals3(e,:)));
     end
     
-    
-    
-    
-    
+    save('workspace.mat')
+ %%
+ 
+ plotna(sizeSurvivals3+1)=zeros;
+ 
+ for n=1:sizeSurvivals3
+     plotna(n)=x3(survivals3(n));
+ end
+
+ [sizeTbd3,nouse]=size(tbd3);
+ 
+LowCorrs(sizeTbd3)=zeros;
+ 
+ for m=1:sizeTbd3
+     LowCorrs(m)=x3(tbd3(m));
+ end    
+ 
+ 
+meanCorrTbd3=mean(LowCorrs);
+stdCorrTbd3=std(LowCorrs);
+stdPltn(sizeSurvivals3+1)=zeros;
+stdPltn(end)=stdCorrTbd3;
+
+
+plotna(end)=meanCorrTbd3;
+
+S3=categorical(survivals3);
+S3((sizeSurvivals3+1),1)='mean rest';
+S3=S3';
+
+hold on
+bar(S3,plotna)
+errorbar(plotna,stdPltn,'.')
+hold off
+
+    VizuBejby
+
+end
