@@ -273,14 +273,14 @@ ITcorrCoefsInfo(ITcorrCoefsInfo==0)=[];
 [sizeTbd,useless]=size(tbd3);
 [sizeSurvivals3,useless]=size(survivals3);
 
-randomControl(sizeTbd3)=zeros;
+% randomControl(sizeTbd)=(1:sizeTbd);
 % randomControl=randperm(sizeTbd,sizeSurvivals3);
 
-IScontrolIdent(size(randomControl))=zeros;
+IScontrolIdent(sizeTbd)=zeros;
 
     for h=1:sizeTbd
         
-        IScontrolIdent(h)=tbd3((randomControl(h)));
+        IScontrolIdent(h)=tbd3(h);
     end
 
   
@@ -289,13 +289,14 @@ IScontrolIdent(size(randomControl))=zeros;
         
         IScontrolCorrs(j)=x3((IScontrolIdent(j)));
     end
+    meanIScontrolCorrs=mean(IScontrolCorrs);
 %%
 %vygenerovat variable co bude rdy na plot
 
-plotna(size(IScorrCoefsInfo)=zeros;
+plotna(size(IScorrCoefsInfo)+1)=zeros;
 [k,l]=size(plotna);
-plotna(1:(end-1))=IScontrolCorrs;
-plotna((l/2+1):end)=IScorrCoefsInfo;
+plotna(1:(l-1))=IScorrCoefsInfo;
+plotna(l)=meanIScontrolCorrs;
 
 % ident(size(IScorrCoefsInfo)*2)=zeros;
 % [k,l]=size(ident);
@@ -305,14 +306,47 @@ plotna((l/2+1):end)=IScorrCoefsInfo;
 % Ident=Ident';
 % 
 % bar(Ident,plotna)
-
-
-subplot(2,1,1)
+%%%%%%%%%%%
+% subplot(2,1,1)
+% 
+% for n=1:sizeSurvivals3
+% 
+% male1=PSTH4Dall1(:,1:25,survivals3(n));
+% male1=mean(male1,2);
+% male1=squeeze(male1);
+% 
+% 
+% for n=1:neuronsN
+%     
+% meanResp1=male1(:,n);
+% spolu1(:,n)=meanResp1;
+% end
+% spolu1=spolu1';
+% spolu1*-1;
+% 
+% 
+% 
+% male2=PSTH4Dall2(:,1:25,survivals3(n));
+% male2=mean(male2,2);
+% male2=squeeze(male2);
+% 
+% 
+% for n=1:neuronsN
+%     
+% meanResp2=male2(:,n);
+% spolu2(:,n)=meanResp2;
+% end
+% spolu2=spolu2';
+% spolu2*-1;
+% 
+% imagesc(spolu1)
+% imagesc(spolu2)
+% 
+% end
+% subplot(2,2,1)
 bar(plotna)
-plotna2(1,1)=mean(plotna(1:(l/2)));
-plotna2(2,1)=mean(plotna(((l/2)+1):end));
-subplot(2,1,2)
-bar(plotna2)
+
+save('variables.mat')
 
 end
 
