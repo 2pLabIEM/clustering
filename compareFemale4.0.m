@@ -1,5 +1,9 @@
+<<<<<<< HEAD
+function compareFemale4
+=======
 function compareFemale
 
+>>>>>>> 5d12cfa1ef282a921604b360b88aa87d4354679d
 clear all
 
 selpath1=uigetdir('O:\Filip\7f','session1');
@@ -235,6 +239,10 @@ end
 thrRepro=0.1;
 x3=diag(ACM);
 tbd3=find(x3<thrRepro);
+<<<<<<< HEAD
+survivals3=find(x3>thrRepro)
+[sizeSurvivals3,nouse]=size(survivals3);
+=======
 survivals3=find(x3>thrRepro);
 
 %vymazat stimuly co sice su podobne medzi sessions ale neboli dost podobne
@@ -248,6 +256,7 @@ for index=1:(size(d))
 end
 survivals3(survivals3==0)=[];
 
+>>>>>>> 5d12cfa1ef282a921604b360b88aa87d4354679d
 IScorrCoefsInfo(size(survivals3))=zeros;
 
     for e=1:(size(survivals3))
@@ -256,6 +265,46 @@ IScorrCoefsInfo(size(survivals3))=zeros;
     end
 
     
+<<<<<<< HEAD
+    save('workspace.mat')
+ %%
+ 
+ plotna(sizeSurvivals3+1)=zeros;
+ 
+ for n=1:sizeSurvivals3
+     plotna(n)=x3(survivals3(n));
+ end
+
+ [sizeTbd3,nouse]=size(tbd3);
+ 
+LowCorrs(sizeTbd3)=zeros;
+ 
+ for m=1:sizeTbd3
+     LowCorrs(m)=x3(tbd3(m));
+ end    
+ 
+ 
+meanCorrTbd3=mean(LowCorrs);
+stdCorrTbd3=std(LowCorrs);
+stdPltn(sizeSurvivals3+1)=zeros;
+stdPltn(end)=stdCorrTbd3;
+
+
+plotna(end)=meanCorrTbd3;
+
+S3=categorical(survivals3);
+S3((sizeSurvivals3+1),1)='mean rest';
+S3=S3';
+
+hold on
+bar(S3,plotna)
+errorbar(plotna,stdPltn,'.')
+hold off
+
+    VizuBejby
+
+end
+=======
 %Konfrontovat  ITcorrCoefsInfo s novou situaciou ohladom stimulov co su
 %relevantne
 ITcorrCoefsInfo2=ITcorrCoefsInfo;
@@ -350,3 +399,4 @@ save('variables.mat')
 
 end
 
+>>>>>>> 5d12cfa1ef282a921604b360b88aa87d4354679d
